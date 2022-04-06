@@ -17,7 +17,7 @@ class Post(models.Model):
         self.save()
 
     def approve_comments(self):
-        return self.Comment.filter(approved_comments=True)
+        return self.comments.filter(approved_comment=True)
 
     def get_absolute_url(self):
         return reverse('post_detail', kwargs={'pk':self.pk})
@@ -26,14 +26,14 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='Comment', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     text = models.TextField()
     create_date = models.DateTimeField(default=timezone.now())
-    approve_comment = models.BooleanField(default=False)
+    approved_comment = models.BooleanField(default=False)
 
     def approve(self):
-        self.approve_comment = True
+        self.approved_comment = True
         self.save()
 
     def get_absolute_url(self):
