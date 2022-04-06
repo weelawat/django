@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import Templateview, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -8,7 +8,7 @@ from blog.models import *
 from blog.form import *
 # Create your views here.
 
-class AboutView(Templateview):
+class AboutView(TemplateView):
     template_name = 'about.html'
 
 class PostListView(ListView):
